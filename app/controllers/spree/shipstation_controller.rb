@@ -7,11 +7,7 @@ module Spree
     before_action :authenticate_shipstation
 
     def export
-      @shipments = Spree::Shipment
-        .exportable
-        .between(date_param(:start_date), date_param(:end_date))
-        .page(params[:page])
-        .per(50)
+      @orders = Spree::Order.all
 
       respond_to do |format|
         format.xml { render layout: false }
